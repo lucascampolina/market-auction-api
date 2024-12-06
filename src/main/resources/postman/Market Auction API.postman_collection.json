@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "5489deee-bca1-48c1-9689-ba191cfa66b2",
+		"name": "Market Auction API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23145026",
+		"_collection_link": "https://interstellar-zodiac-943267.postman.co/workspace/WorkSpace---LC~540222a1-00a9-40c7-86c0-2641c6e30963/collection/23145026-5489deee-bca1-48c1-9689-ba191cfa66b2?action=share&source=collection_link&creator=23145026"
+	},
+	"item": [
+		{
+			"name": "Get All Equipment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/equipment",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"equipment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculate Equipment Values",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/equipment/{{modelId}}/{{year}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"equipment",
+						"{{modelId}}",
+						"{{year}}"
+					],
+					"variable": [
+						{
+							"key": "modelId",
+							"value": "1"
+						},
+						{
+							"key": "year",
+							"value": "2007"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}

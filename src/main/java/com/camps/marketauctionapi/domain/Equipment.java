@@ -2,7 +2,6 @@ package com.camps.marketauctionapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.apache.commons.lang3.RandomStringUtils;
 
 import java.math.BigDecimal;
 
@@ -16,17 +15,13 @@ public class Equipment {
     BigDecimal defaultAuctionRatio;
     Classification classification;
 
-    public Equipment(SalesDetails saleDetails, BigDecimal defaultMarketRatio, BigDecimal defaultAuctionRatio, Classification classification) {
-        this.id = getRandomNumeric();
+    public Equipment(String id, SalesDetails saleDetails, BigDecimal defaultMarketRatio, BigDecimal defaultAuctionRatio, Classification classification) {
+        this.id = id;
         this.saleDetails = saleDetails;
         this.schedule = new Schedule();
         this.defaultMarketRatio = defaultMarketRatio;
         this.defaultAuctionRatio = defaultAuctionRatio;
         this.classification = classification;
-    }
-
-    private static String getRandomNumeric() {
-        return RandomStringUtils.randomNumeric(5);
     }
 
     public void addRatios(int year, Ratios ratios) {

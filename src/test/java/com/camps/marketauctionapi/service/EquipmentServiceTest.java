@@ -31,7 +31,7 @@ public class EquipmentServiceTest {
 
     @Test
     void calculatesValues_validModelIdAndYear_returnsCorrectValues() {
-        Equipment equipment = new Equipment(new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T"));
+        Equipment equipment = new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T"));
         Ratios ratios = new Ratios(new BigDecimal("0.3"), new BigDecimal("0.4"));
         equipment.addRatios(2020, ratios);
 
@@ -41,7 +41,7 @@ public class EquipmentServiceTest {
         when(mockDataInitializer.getEquipmentData()).thenReturn((Map) equipmentData);
         equipmentService.initData();
 
-        Map<String, Double> values = equipmentService.calculatesValues(1L, 2020);
+        Map<String, Double> values = equipmentService.calculatesValues("1", 2020);
 
         assertEquals(300.00, values.get("marketValue"));
         assertEquals(400.00, values.get("auctionValue"));
@@ -49,7 +49,7 @@ public class EquipmentServiceTest {
 
     @Test
     void calculatesValues_invalidYear_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> equipmentService.calculatesValues(1L, 1800));
+        assertThrows(IllegalArgumentException.class, () -> equipmentService.calculatesValues("1", 1800));
     }
 
     @Test
@@ -57,13 +57,13 @@ public class EquipmentServiceTest {
         when(mockDataInitializer.getEquipmentData()).thenReturn(new HashMap<>());
         equipmentService.initData();
 
-        assertThrows(IllegalArgumentException.class, () -> equipmentService.calculatesValues(1L, 2020));
+        assertThrows(IllegalArgumentException.class, () -> equipmentService.calculatesValues("1", 2020));
     }
 
     @Test
     void getAllEquipment_returnsAllEquipment() {
         Map<String, Equipment> equipmentData = new HashMap<>();
-        equipmentData.put("1", new Equipment(new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T")));
+        equipmentData.put("1", new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T")));
 
         when(mockDataInitializer.getEquipmentData()).thenReturn(equipmentData);
         equipmentService.initData();

@@ -25,7 +25,7 @@ public class MarketController {
     }
 
     @GetMapping("/{modelId}/{year}")
-    public Map<String, Double> calculatesValues(@PathVariable long modelId, @PathVariable int year) {
+    public Map<String, Double> calculatesValues(@PathVariable String modelId, @PathVariable int year) {
         return equipmentService.calculatesValues(modelId, year);
     }
 }

@@ -45,7 +45,7 @@ class MarketControllerTest {
     void getAllEquipment_returnsEquipmentList() throws Exception {
         SalesDetails salesDetails = new SalesDetails(new BigDecimal("1000"), 122, 17);
         Classification classification = new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T");
-        Equipment equipment = new Equipment(salesDetails, new BigDecimal("0.1"), new BigDecimal("0.2"), classification);
+        Equipment equipment = new Equipment("1", salesDetails, new BigDecimal("0.1"), new BigDecimal("0.2"), classification);
         Map<String, Equipment> equipmentData = Collections.singletonMap("1", equipment);
 
         when(equipmentService.getAllEquipment()).thenReturn(equipmentData);
@@ -59,7 +59,7 @@ class MarketControllerTest {
     void calculatesValues_validModelIdAndYear_returnsValues() throws Exception {
         Map<String, Double> values = Map.of("marketValue", 300.00, "auctionValue", 400.00);
 
-        when(equipmentService.calculatesValues(1L, 2020)).thenReturn(values);
+        when(equipmentService.calculatesValues("1", 2020)).thenReturn(values);
 
         mockMvc.perform(get("/api/equipment/1/2020"))
                 .andExpect(status().isOk())
