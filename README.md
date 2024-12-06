@@ -31,7 +31,7 @@ To get started, clone this repository and follow the instructions below.
 
 ### API Endpoints
 - **/api/equipment** (GET): Retrieve all current equipments.
-- **/api/equipment/{modelId}/{year}** (POST): Retrieve all current equipments by model and year.
+- **/api/equipment/{modelId}/{year}** (GET): Retrieve all current equipments by model and year.
 
 ## Usage
 Once the application is running, you can interact with the API using tools like Postman or cURL.
