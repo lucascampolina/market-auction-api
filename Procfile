@@ -1,1 +1,1 @@
-web: java -jar target/market-auction-api.jar
+web: java -jar target/market-auction-api-0.0.1-SNAPSHOT.jar
