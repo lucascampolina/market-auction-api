@@ -1,8 +1,5 @@
 # Market Auction API - README
 
-## Introduction
-Welcome to the Market Auction API.
-
 ## Getting Started
 To get started, clone this repository and follow the instructions below.
 
