@@ -31,8 +31,8 @@ public class EquipmentServiceTest {
         Ratios ratios = new Ratios(new BigDecimal("0.3"), new BigDecimal("0.4"));
         equipment.addRatios(2020, ratios);
 
-        Map<Long, Equipment> equipmentData = new HashMap<>();
-        equipmentData.put(1L, equipment);
+        Map<String, Equipment> equipmentData = new HashMap<>();
+        equipmentData.put("1", equipment);
 
         when(mockDataInitializer.getEquipmentData()).thenReturn((Map) equipmentData);
         equipmentService.initData();

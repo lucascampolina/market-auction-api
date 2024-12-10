@@ -14,6 +14,7 @@ import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EquipmentService {
@@ -47,10 +48,8 @@ public class EquipmentService {
             throw new IllegalArgumentException("Equipment ID " + modelId + " not found.");
         }
 
-        Ratios ratios = equipment.getSchedule().getYearRatios().get(year);
-        if (ratios == null) {
-            throw new IllegalArgumentException("No ratio found for the year: " + year + " - " + "Equipment ID: " + modelId);
-        }
+        Ratios ratios = Optional.ofNullable(equipment.getSchedule().getYearRatios().get(year))
+                .orElseThrow(() -> new IllegalArgumentException("No ratio found for the year: " + year + " - Equipment ID: " + modelId));
         return getValuesResponse(ratios, equipment);
     }
 

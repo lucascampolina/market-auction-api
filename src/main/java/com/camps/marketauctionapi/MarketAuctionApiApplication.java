@@ -34,12 +34,5 @@ public class MarketAuctionApiApplication implements CommandLineRunner {
         } catch (Exception e) {
             logger.error("Error calculating values for Year 2007 ID 67352", e);
         }
-
-        try {
-            Map<String, Double> result2 = equipmentService.calculatesValues("87964", 2011);
-            logger.info("Result for Year 2011 ID 87964: {}", result2);
-        } catch (Exception e) {
-            logger.error("Error calculating values for Year 2011 ID 87964", e);
-        }
     }
 }
