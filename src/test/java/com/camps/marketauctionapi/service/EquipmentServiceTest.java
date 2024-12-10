@@ -1,11 +1,7 @@
 package com.camps.marketauctionapi.service;
 
 import com.camps.marketauctionapi.config.MockDataInitializer;
-import com.camps.marketauctionapi.domain.Category;
-import com.camps.marketauctionapi.domain.Classification;
-import com.camps.marketauctionapi.domain.Equipment;
-import com.camps.marketauctionapi.domain.Ratios;
-import com.camps.marketauctionapi.domain.SalesDetails;
+import com.camps.marketauctionapi.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -31,7 +27,7 @@ public class EquipmentServiceTest {
 
     @Test
     void calculatesValues_validModelIdAndYear_returnsCorrectValues() {
-        Equipment equipment = new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T"));
+        Equipment equipment = new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification("FURNITURE", "Dozers", "Caterpillar", "D8T"));
         Ratios ratios = new Ratios(new BigDecimal("0.3"), new BigDecimal("0.4"));
         equipment.addRatios(2020, ratios);
 
@@ -63,7 +59,7 @@ public class EquipmentServiceTest {
     @Test
     void getAllEquipment_returnsAllEquipment() {
         Map<String, Equipment> equipmentData = new HashMap<>();
-        equipmentData.put("1", new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T")));
+        equipmentData.put("1", new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification("FURNITURE", "Dozers", "Caterpillar", "D8T")));
 
         when(mockDataInitializer.getEquipmentData()).thenReturn(equipmentData);
         equipmentService.initData();

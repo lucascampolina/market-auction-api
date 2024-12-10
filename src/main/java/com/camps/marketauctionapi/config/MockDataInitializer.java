@@ -1,6 +1,5 @@
 package com.camps.marketauctionapi.config;
 
-import com.camps.marketauctionapi.domain.Category;
 import com.camps.marketauctionapi.domain.Classification;
 import com.camps.marketauctionapi.domain.Equipment;
 import com.camps.marketauctionapi.domain.Ratios;
@@ -24,7 +23,7 @@ public class MockDataInitializer {
     @PostConstruct
     public void initData() {
         SalesDetails saleDetails1 = new SalesDetails(BigDecimal.valueOf(681252), 122, 17);
-        Classification classification1 = new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T");
+        Classification classification1 = new Classification("FURNITURE", "Dozers", "Caterpillar", "D8T");
         Equipment equipment1 = new Equipment("67352", saleDetails1, BigDecimal.valueOf(0.02), BigDecimal.valueOf(0.02), classification1);
         equipment1.addRatios(2006, new Ratios(BigDecimal.valueOf(0.311276), BigDecimal.valueOf(0.181383)));
         equipment1.addRatios(2007, new Ratios(BigDecimal.valueOf(0.317628), BigDecimal.valueOf(0.185085)));
@@ -35,7 +34,7 @@ public class MockDataInitializer {
         equipment1.addRatios(2012, new Ratios(BigDecimal.valueOf(0.431321), BigDecimal.valueOf(0.213178)));
 
         SalesDetails saleDetails2 = new SalesDetails(BigDecimal.valueOf(48929), 12, 127);
-        Classification classification2 = new Classification(Category.ELECTRONICS, "Boom Lifts", "JLG", "340AJ");
+        Classification classification2 = new Classification("ELECTRONICS", "Boom Lifts", "JLG", "340AJ");
         Equipment equipment2 = new Equipment("87964" ,saleDetails2, BigDecimal.valueOf(0.06), BigDecimal.valueOf(0.06), classification2);
         equipment2.addRatios(2016, new Ratios(BigDecimal.valueOf(0.613292), BigDecimal.valueOf(0.417468)));
         equipment2.addRatios(2017, new Ratios(BigDecimal.valueOf(0.692965), BigDecimal.valueOf(0.473205)));

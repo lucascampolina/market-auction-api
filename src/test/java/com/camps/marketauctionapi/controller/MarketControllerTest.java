@@ -44,7 +44,7 @@ class MarketControllerTest {
     @Test
     void getAllEquipment_returnsEquipmentList() throws Exception {
         SalesDetails salesDetails = new SalesDetails(new BigDecimal("1000"), 122, 17);
-        Classification classification = new Classification(Category.FURNITURE, "Dozers", "Caterpillar", "D8T");
+        Classification classification = new Classification("FURNITURE", "Dozers", "Caterpillar", "D8T");
         Equipment equipment = new Equipment("1", salesDetails, new BigDecimal("0.1"), new BigDecimal("0.2"), classification);
         Map<String, Equipment> equipmentData = Collections.singletonMap("1", equipment);
 

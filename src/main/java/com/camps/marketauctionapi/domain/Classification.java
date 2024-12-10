@@ -1,19 +1,19 @@
 package com.camps.marketauctionapi.domain;
 
 public class Classification {
-    Category category;
+    String category;
     String subcategory;
     String make;
     String model;
 
-    public Classification(Category category, String subcategory, String make, String model) {
+    public Classification(String category, String subcategory, String make, String model) {
         this.category = category;
         this.subcategory = subcategory;
         this.make = make;
         this.model = model;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 

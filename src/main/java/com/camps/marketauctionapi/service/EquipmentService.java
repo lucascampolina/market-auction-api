@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Calendar;
@@ -38,7 +39,7 @@ public class EquipmentService {
 
     public Map<String, Double> calculatesValues(String modelId, int year) {
         if (year < 1900 || year > Calendar.getInstance().get(Calendar.YEAR)) {
-            throw new IllegalArgumentException("Invalid year: " + year + ". Year must be between 1900 and the current year.");
+            throw new IllegalArgumentException("Invalid year: " + year + ". Year must be between 2006 and 2020.");
         }
 
         Equipment equipment = equipmentData.get(modelId);
@@ -47,6 +48,9 @@ public class EquipmentService {
         }
 
         Ratios ratios = equipment.getSchedule().getYearRatios().get(year);
+        if (ratios == null) {
+            throw new IllegalArgumentException("No ratio found for the year: " + year + " - " + "Equipment ID: " + modelId);
+        }
         return getValuesResponse(ratios, equipment);
     }
 
