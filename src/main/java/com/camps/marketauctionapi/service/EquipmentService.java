@@ -48,8 +48,7 @@ public class EquipmentService {
             throw new IllegalArgumentException("Equipment ID " + modelId + " not found.");
         }
 
-        Ratios ratios = Optional.ofNullable(equipment.getSchedule().getYearRatios().get(year))
-                .orElseThrow(() -> new IllegalArgumentException("No ratio found for the year: " + year + " - Equipment ID: " + modelId));
+        Ratios ratios = equipment.getSchedule().getYearRatios().get(year);
         return getValuesResponse(ratios, equipment);
     }
 
