@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EquipmentService {
@@ -33,11 +35,8 @@ public class EquipmentService {
     }
 
     public Map<String, Double> calculatesValues(String modelId, int year) {
-        Equipment equipment = equipmentData.get(modelId);
-        if (equipment == null) {
-            throw new IllegalArgumentException("Equipment ID " + modelId + " not found.");
-        }
-
+        Equipment equipment = Optional.ofNullable(equipmentData.get(modelId))
+                .orElseThrow(() -> new IllegalArgumentException("Equipment ID " + modelId + " not found."));
         return equipment.calculateValues(year);
     }
 }
