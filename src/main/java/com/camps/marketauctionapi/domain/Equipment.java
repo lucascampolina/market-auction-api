@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Optional;
 
 @JsonPropertyOrder({"schedule", "defaultMarketRatio", "defaultAuctionRatio", "saleDetails", "classification" })
 public class Equipment {
@@ -56,11 +57,8 @@ public class Equipment {
 
     public Map<String, Double> calculateValues(int year) {
         validateYear(year);
-
-        Ratios ratios = schedule.getYearRatios().get(year);
-        if (ratios == null) {
-            ratios = new Ratios(defaultMarketRatio, defaultAuctionRatio);
-        }
+        Ratios ratios = Optional.ofNullable(schedule.getYearRatios().get(year))
+                .orElseGet(() -> new Ratios(defaultMarketRatio, defaultAuctionRatio));
 
         return ratios.calculateValues(saleDetails.getCost());
     }
