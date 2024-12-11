@@ -47,6 +47,22 @@ public class EquipmentServiceTest {
     }
 
     @Test
+    void required_calculatesValues_usesDefaultRatios() {
+        Equipment equipment = new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification("FURNITURE", "Dozers", "Caterpillar", "D8T"));
+
+        Map<String, Equipment> equipmentData = new HashMap<>();
+        equipmentData.put("1", equipment);
+
+        when(mockDataInitializer.getEquipmentData()).thenReturn((Map) equipmentData);
+        equipmentService.initData();
+
+        Map<String, Double> values = equipmentService.calculatesValues("1", 2020);
+
+        assertEquals(100.00, values.get("marketValue"));
+        assertEquals(200.00, values.get("auctionValue"));
+    }
+
+    @Test
     void calculatesValues_validModelIdAndYear_returnsCorrectValues() {
         Equipment equipment = new Equipment("1", new SalesDetails(new BigDecimal("1000"), 122, 17), new BigDecimal("0.1"), new BigDecimal("0.2"), new Classification("FURNITURE", "Dozers", "Caterpillar", "D8T"));
         Ratios ratios = new Ratios(new BigDecimal("0.3"), new BigDecimal("0.4"));
