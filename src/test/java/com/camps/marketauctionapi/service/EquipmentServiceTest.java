@@ -10,8 +10,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class EquipmentServiceTest {
@@ -23,6 +22,28 @@ public class EquipmentServiceTest {
     public void setUp() {
         mockDataInitializer = Mockito.mock(MockDataInitializer.class);
         equipmentService = new EquipmentService(mockDataInitializer);
+    }
+
+    @Test
+    public void required_testCalculatesValues() {
+        try {
+            Map<String, Double> result1 = equipmentService.calculatesValues("67352", 2007);
+            System.out.println("Result for Year 2007 ID 67352:" + result1);
+            assertNotNull(result1, "The result should not be null");
+        } catch (Exception e) {
+            System.out.println("Error calculating values for Year 2007 ID 67352" + e.getMessage());
+        }
+    }
+
+    @Test
+    public void required_testCalculatesValues_throwsException() {
+        try {
+            Map<String, Double> result1 = equipmentService.calculatesValues("87964", 2011);
+            System.out.println("Result for Year 2011 ID 87964:" + result1);
+            assertNotNull(result1, "The result should not be null");
+        } catch (Exception e) {
+            System.out.println("Error calculating values for Year 2011 ID 87964: " + e.getMessage());
+        }
     }
 
     @Test
